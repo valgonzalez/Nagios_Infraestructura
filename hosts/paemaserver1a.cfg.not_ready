@@ -1,0 +1,253 @@
+define host {
+        host_name               paemaserver1a
+        alias                   paemaserver1a (Nodo A Ema)
+	icon_image              sunlogo.gif
+        address                 172.27.101.160
+        hostgroups              solaris-servers, mediacion-servers
+        max_check_attempts      3
+        check_period            24x7
+        check_command           check-host-alive
+        contacts                itops, noc, mediacion
+        notification_interval   60
+        notification_period     24x7
+}
+
+define service {
+        use                     generic-service
+        host_name               paemaserver1a
+        service_description     CPU
+        check_command           check_nrpe!check_cpu
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts               	itops, mediacion
+	action_url /nagiosgraph/cgi-bin/show.cgi?host=$HOSTNAME$&service=$SERVICEDESC$' onMouseOver='showGraphPopup(this)' onMouseOut='hideGraphPopup()' rel='/nagiosgraph/cgi-bin/showgraph.cgi?host=$HOSTNAME$&service=$SERVICEDESC$
+}
+
+define service {
+        use                     generic-service
+        host_name               paemaserver1a
+        service_description     RootFS
+        check_command           check_nrpe!check_rootfs
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts               	itops, mediacion, noc
+}
+
+define service {
+        use                     generic-service
+        host_name               paemaserver1a
+        service_description     MEMORY
+        check_command           check_nrpe!check_mem
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+	notifications_enabled	0
+        notification_period     24x7
+        contacts               	itops, mediacion
+}
+
+define service {
+        use                     generic-service
+        host_name               paemaserver1a
+        service_description     PING
+        check_command           check_ping!100,20%!200,40%
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts                itops, noc, mediacion
+}
+
+define service {
+        use                     generic-service
+        host_name               paemaserver1a
+        service_description     SSH
+        check_command           check_ssh
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts                itops, noc, mediacion
+}
+
+define service {
+        use                     generic-service
+        host_name               paemaserver1a
+        service_description     LOAD
+        check_command           check_nrpe!check_load
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts                itops, noc, mediacion
+}
+
+define service {
+        use                     generic-service
+        host_name               paemaserver1a
+        service_description     Total Processes
+        check_command           check_nrpe!check_procs
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts		itops, mediacion, noc
+}
+
+define service {
+        use                     generic-service
+        host_name               paemaserver1a
+        service_description     Swap Usage
+        check_command           check_nrpe!check_swap
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts		itops, noc, mediacion
+}
+
+define service {
+        use                     generic-service
+        host_name               paemaserver1a
+        service_description     /opt/app/oracle
+        check_command           check_nrpe!check_oraclefs
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts		itops, noc, mediacion
+}
+
+define service {
+        use                     generic-service
+        host_name               paemaserver1a
+        service_description     /tmp
+        check_command           check_nrpe!check_tmpfs
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts		itops, noc, mediacion
+}
+
+define service {
+        use                     generic-service
+        host_name               paemaserver1a
+        service_description     /var/log
+        check_command           check_nrpe!check_logfs
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts		itops, noc, mediacion
+}
+
+define service {
+        use                     generic-service
+        host_name               paemaserver1a
+        service_description     /var/sog
+        check_command           check_nrpe!check_sogfs
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts		itops, noc, mediacion
+}
+
+define service {
+        use                     generic-service
+        host_name               paemaserver1a
+        service_description     /var/sog/backup
+        check_command           check_nrpe!check_sogbackupsfs
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts		itops, noc, mediacion
+}
+
+define service {
+        use                     generic-service
+        host_name               paemaserver1a
+        service_description     /opt/app/oracle/oradata
+        check_command           check_nrpe!check_oradatafs
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts		itops, noc, mediacion
+}
+
+define service {
+        use                     generic-service
+        host_name               paemaserver1a
+        service_description     /var/sog/backups/oradata
+        check_command           check_nrpe!check_bkporadatafs
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts		itops, noc, mediacion
+}
+
+define service {
+        use                     generic-service
+        host_name               paemaserver1a
+        service_description     /var/sog/extension/orchestator/global
+        check_command           check_nrpe!check_orchestatorfs
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts		itops, noc, mediacion
+}
+
+define service {
+        use                     generic-service
+        host_name               paemaserver1a
+        service_description     /var/sog/agendata
+        check_command           check_nrpe!check_agendatafs
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts		itops, noc, mediacion
+}

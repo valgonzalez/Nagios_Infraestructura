@@ -1,0 +1,27 @@
+define host {
+        host_name               panvmserv2
+        alias                   panvmserv2 (Servidor Esx 2)
+	icon_image              vmware.gif
+        address                 172.27.71.165
+        hostgroups              it-servers, esx-hosts
+        max_check_attempts      3
+        check_period            24x7
+        check_command           check-host-alive
+        contacts                itops, noc
+        notification_interval   60
+        notification_period     24x7
+}
+
+define service {
+        use                     generic-service
+        host_name               panvmserv2
+        service_description     PING
+        check_command           check_ping!100,20%!200,40%
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts                itops, noc
+}

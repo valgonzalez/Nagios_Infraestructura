@@ -1,0 +1,211 @@
+define host {
+        host_name               pandbserver02
+        alias                   pandbserver02 (Product DB Host)
+	icon_image              sunlogo.gif
+        address                 172.27.98.172
+        hostgroups              solaris-servers, it-servers, productos-servers
+        max_check_attempts      3
+        check_period            24x7
+        check_command           check-host-alive
+        contacts                itops, itmanager, noc
+        notification_interval   60
+        notification_period     24x7
+}
+
+define service {
+        use                     generic-service
+        host_name               pandbserver02
+        service_description     CPU
+        check_command           check_nrpe!check_cpu
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts               	itops
+	action_url /nagiosgraph/cgi-bin/show.cgi?host=$HOSTNAME$&service=$SERVICEDESC$' onMouseOver='showGraphPopup(this)' onMouseOut='hideGraphPopup()' rel='/nagiosgraph/cgi-bin/showgraph.cgi?host=$HOSTNAME$&service=$SERVICEDESC$
+}
+
+define service {
+        use                     generic-service
+        host_name               pandbserver02
+        service_description     RootFS
+        check_command           check_nrpe!check_rootfs
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts               	itops, itmanager, noc
+}
+
+define service {
+        use                     generic-service
+        host_name               pandbserver02
+        service_description     MEMORY
+        check_command           check_nrpe!check_mem
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+	notifications_enabled	0
+        notification_period     24x7
+        contacts               	itops
+}
+
+define service {
+        use                     generic-service
+        host_name               pandbserver02
+        service_description     PING
+        check_command           check_ping!100,20%!200,40%
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts                itops, itmanager, noc
+}
+
+define service {
+        use                     generic-service
+        host_name               pandbserver02
+        service_description     SSH
+        check_command           check_ssh
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts                itops, itmanager, noc
+}
+
+define service {
+        use                     generic-service
+        host_name               pandbserver02
+        service_description     LOAD
+        check_command           check_nrpe!check_load
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts                itops, itmanager, noc
+}
+
+define service {
+        use                     generic-service
+        host_name               pandbserver02
+        service_description     Total Processes
+        check_command           check_nrpe!check_procs
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts		itops, itmanager, noc
+}
+
+define service {
+        use                     generic-service
+        host_name               pandbserver02
+        service_description     Swap Usage
+        check_command           check_nrpe!check_swap
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts		itops, itmanager, noc
+}
+
+define service {
+        use                     generic-service
+        host_name               pandbserver02
+        service_description     /oradata
+        check_command           check_nrpe!check_oradatafs
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts		itops, itmanager, noc
+}
+
+define service {
+        use                     generic-service
+        host_name               pandbserver02
+        service_description     /app
+        check_command           check_nrpe!check_oraappzfs
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts		itops, itmanager, noc
+}
+
+define service {
+        use                     generic-service
+        host_name               pandbserver02
+        service_description     /u01
+        check_command           check_nrpe!check_u01fs
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts		itops, itmanager, noc
+}
+
+define service {
+        use                     generic-service
+        host_name               pandbserver02
+        service_description     Internal Disk Health
+        check_command           check_nrpe!check_diskerr
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts		itops
+}
+
+define service {
+        use                     generic-service
+        host_name               pandbserver02
+        service_description     CPU TEMP
+        check_command           check_nrpe!check_cputemp
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts		itops, itmanager, noc
+}
+
+define service {
+        use                     generic-service
+        host_name               pandbserver02
+        service_description     FMDUMP Status
+        check_command           check_nrpe!check_hw_solaris
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts		itops, itmanager, noc
+}
