@@ -5,4 +5,7 @@
 # usuario de la interfas web nagiosadmin
 #
 # El archivo commands.cfg tiene una contraseña definida en el comando NSClient++ que
-# hace match con el archivo de config de los clientes windows monitoreados por Nagios
+# hace match con el archivo de config de los clientes windows monitoreados por Nagios.
+#
+# Se modifica el archivo timeperiods, se define un nuevo periodo de tiempo de monitoreo
+# llamado workhours-digicel para asignarlo a equipo no productivos. 
