@@ -10,3 +10,6 @@
 #
 # Se modifica el archivo timeperiods, se define un nuevo periodo de tiempo de monitoreo
 # llamado workhours-digicel para asignarlo a equipo no productivos. 
+#
+# Se modifica archivo cgi.cfg, se agrega usuario de solo lectura para el noc
+# tambien se copia nuevamente el archivo htpasswd.users 09/02/2022 AT.
