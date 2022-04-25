@@ -1,13 +1,13 @@
 define host {
         host_name               palv0011
-        alias                   palv0011 (ARPU)
+        alias                   palv0011 (Escalación: 1-INSWITCH, 2-UNIX SERVER)
 	icon_image              linux40.gif
         address                 172.27.71.179
-        hostgroups              linux-servers, esx-servers 
+        hostgroups              linux-servers 
         max_check_attempts      3
         check_period            24x7
         check_command           check-host-alive
-        contacts                itops, noc
+        contacts                itops, noc, inswitch
         notification_interval   60
         notification_period     24x7
 }
@@ -23,7 +23,7 @@ define service {
         check_period            24x7
         notification_interval   60
         notification_period     24x7
-        contacts                itops, noc
+        contacts                itops, noc, inswitch
 }
 
 define service {
@@ -37,7 +37,7 @@ define service {
         check_period            24x7
         notification_interval   60
         notification_period     24x7
-        contacts                itops, noc
+        contacts                itops
 }
 
 define service {
@@ -66,7 +66,63 @@ define service {
         check_period            24x7
         notification_interval   60
         notification_period     24x7
-        contacts                itops, noc
+        contacts                itops, noc, inswitch
+}
+
+define service {
+        use                     generic-service
+        host_name               palv0011
+        service_description     U01FS
+        check_command           check_nrpe!check_u01fs
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts                itops, noc, inswitch
+}
+
+define service {
+        use                     generic-service
+        host_name               palv0011
+        service_description     U02FS
+        check_command           check_nrpe!check_u02fs
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts                itops, noc, inswitch
+}
+
+define service {
+        use                     generic-service
+        host_name               palv0011
+        service_description     U03FS
+        check_command           check_nrpe!check_u03fs
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts                itops, noc, inswitch
+}
+
+define service {
+        use                     generic-service
+        host_name               palv0011
+        service_description     BackupFS
+        check_command           check_nrpe!check_bkpfs
+        max_check_attempts      3
+        check_interval          5
+        retry_interval          1
+        check_period            24x7
+        notification_interval   60
+        notification_period     24x7
+        contacts                itops, noc, inswitch
 }
 
 define service {
@@ -95,22 +151,22 @@ define service {
         check_period            24x7
         notification_interval   60
         notification_period     24x7
-        contacts                itops, noc
+        contacts                itops, inswitch
 }
 
-define service {
-        use                     generic-service
-        host_name               palv0011
-        service_description     LOAD
-        check_command           check_nrpe!check_load
-        max_check_attempts      3
-        check_interval          5
-        retry_interval          1
-        check_period            24x7
-        notification_interval   60
-        notification_period     24x7
-        contacts                itops
-}
+#define service {
+#        use                     generic-service
+#        host_name               palv0011
+#        service_description     LOAD
+#        check_command           check_nrpe!check_load
+#        max_check_attempts      3
+#        check_interval          5
+#        retry_interval          1
+#        check_period            24x7
+#        notification_interval   60
+#        notification_period     24x7
+#        contacts                itops
+#}
 
 define service {
         use                     generic-service
