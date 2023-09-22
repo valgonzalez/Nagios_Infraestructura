@@ -13,3 +13,6 @@
 #
 # Se modifica archivo cgi.cfg, se agrega usuario de solo lectura para el noc
 # tambien se copia nuevamente el archivo htpasswd.users 09/02/2022 AT.
+#
+# Se agrega definicion de comando "check_esxi_hardware" en file command.cfg para monitorear el HW
+# de nodos ESXi 09/14/2023 AT.
